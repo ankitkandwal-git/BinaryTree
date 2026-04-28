@@ -15,19 +15,18 @@ struct Node{
 
 vector<int>leftViewOfBT(Node* root){
     vector<int>ans;
+    if(root == NULL) return ans;
     queue<Node*>q;
     q.push(root);
-    if(root == NULL) return ans;
     while(!q.empty()){
         int size = q.size();
-        int temp = 0;
         for(int i=0;i<size;i++){
-            Node* cur  = q.front();
+            Node* cur = q.front();
             q.pop();
-            if(cur->right) q.push(cur->right);
+            if(i == 0) ans.push_back(cur->data); // leftmost node at this level
             if(cur->left) q.push(cur->left);
+            if(cur->right) q.push(cur->right);
         }
-        ans.push_back(temp);
     }
     return ans;
 }
@@ -66,4 +65,6 @@ int main(){
     }
     vector<int>leftView = leftViewOfBT(root);
     cout<<"Left view of the binary tree: ";
+    for(int val : leftView) cout << val << " ";
+    cout << endl;
 }
