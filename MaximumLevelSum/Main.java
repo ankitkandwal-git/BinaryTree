@@ -24,7 +24,8 @@ public class Main{
             int sum = 0;
             for(int i=0;i<size;i++){
                 Node temp = q.poll();
-                sum+=temp.data;
+                if(temp==null) continue;
+                sum += temp.data;
                 if(temp.left!=null) q.add(temp.left);
                 if(temp.right!=null) q.add(temp.right);
             }
